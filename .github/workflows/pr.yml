@@ -25,3 +25,7 @@ jobs:
         uses: peter-evans/create-pull-request@v3
         with:
           title: $TITLE
+          commit-message: update changelog
+          body: Update changelog to reflect release changes
+          branch: develop
+          base: main
