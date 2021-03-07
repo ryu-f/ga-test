@@ -29,6 +29,5 @@ jobs:
           title: ${{ steps.vars.outputs.pr_title }}
           body: ${{ steps.vars.outputs.pr_body }}
           commit-message: update changelog
-          body: Update changelog to reflect release changes
           branch: develop
           base: main
