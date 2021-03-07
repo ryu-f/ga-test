@@ -25,7 +25,7 @@ jobs:
             by [create-pull-request](https://github.com/peter-evans/create-pull-request)."
       - name: Create Pull Request
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.PATOKEN }}
         uses: peter-evans/create-pull-request@v3
         with:
           title: ${{ steps.vars.outputs.pr_title }}
