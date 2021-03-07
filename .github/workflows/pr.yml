@@ -20,9 +20,11 @@ jobs:
           DATE=`date +"%Y%m%d"`
           TITLE="Release_$DATE"
       - name: Create Pull Request
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         uses: peter-evans/create-pull-request@v3
         with:
-          title: $TITLE
+          title: ${{ TITLE }}
           commit-message: update changelog
           body: Update changelog to reflect release changes
           branch: develop
