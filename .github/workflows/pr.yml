@@ -15,16 +15,19 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Create Variable
+      - name: Set output variables
+        id: vars
         run: |
-          DATE=`date +"%Y%m%d"`
-          TITLE="Release_$DATE"
+          echo ::set-output name=pr_title::"[Test] Add report file $(date +%d-%m-%Y)"
+          echo ::set-output name=pr_body::"This PR was auto-generated on $(date +%d-%m-%Y) \
+            by [create-pull-request](https://github.com/peter-evans/create-pull-request)."
       - name: Create Pull Request
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         uses: peter-evans/create-pull-request@v3
         with:
-          title: ${{ TITLE }}
+          title: ${{ steps.vars.outputs.pr_title }}
+          body: ${{ steps.vars.outputs.pr_body }}
           commit-message: update changelog
           body: Update changelog to reflect release changes
           branch: develop
